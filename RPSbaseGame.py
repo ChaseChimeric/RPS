@@ -1,48 +1,85 @@
 import random
+import time
 moves = ["Rock", "Paper","Scissors"]
-print(type(moves))
-print(moves)
-
-
 
 def GameFlow(): 
+	#Intros the game and initiates the flow
+	print(moves)
 	gameStartIntro = """You're playing rock paper scissors\nPress ENTER to start."""
 	print(gameStartIntro)
 	startResponse = input()
-	FirstStage()
+	PlayerMoves()
 
-def FirstStage():
+def PlayerMoves():
+	#Asks for input, checks validity, and responds
+	time.sleep(.5)
 	print("Enter you move \nPress:\n1 for Rock,\n2 for Paper\n3 for Scissors")
-	moveResponse = input()
-	global intMove
-	intMove = int(moveResponse) - 1
+	global moveResponse
+	moveResponse = input()	
+	moveResponse = int(moveResponse) - 1
 	
-	if int(moveResponse) == 1:
-		print("You played " + moves[int(moveResponse) - 1])
-		SecondStage()	
-		
-	elif int(moveResponse) == 2:
-		print("You played " + moves[int(moveResponse) - 1])
-		SecondStage()
-
-	elif int(moveResponse) == 3:
-		print("You played " + moves[int(moveResponse) - 1])
-		SecondStage()
-	
+	if moveResponse == 0:
+		CpuMoves()			
+	elif moveResponse == 1:
+		CpuMoves()
+	elif moveResponse == 2:
+		CpuMoves()
 	else:
-		print("\Wrong Input!!\n\n\n\n")
-		FirstStage()
+		print("Wrong Input!!\n\n\n\n")
+		PlayerMoves()
 
-def SecondStage():
+def CpuMoves():
+	#Prints moves (CPU & Player)
+	time.sleep(.5)
 	global cpuMove
 	cpuMove = random.randrange(0,3)
+	print("You played " + moves[moveResponse])
 	print("CPU Played: " + moves[cpuMove])
-	GameFinish()
+	CheckForWin()
+
+def CheckForWin():
+	#Checks for a winner using if/else
+	time.sleep(.5)
+	print("\n\n\n")
+	if cpuMove == 0 and moveResponse == 0:
+		print("STALEMATE")
+		GameFinish()
+	elif cpuMove == 1 and moveResponse == 0:
+		print("You LOSE")
+		GameFinish()
+	elif cpuMove == 2 and moveResponse == 0:
+		print("You WIN")
+		GameFinish()
+	elif cpuMove == 0 and moveResponse == 1:
+		print("You WIN")
+		GameFinish()
+	elif cpuMove == 0 and moveResponse == 2:
+		print("You LOSE")
+		GameFinish()
+	elif cpuMove == 1 and moveResponse == 1:
+		print("STALEMATE")
+		GameFinish()
+	elif cpuMove == 2 and moveResponse == 2:
+		print("STALEMATE")
+		GameFinish()
+	elif cpuMove == 2 and moveResponse == 0:
+		print("You LOSE")
+		GameFinish()
+	elif cpuMove == 2 and moveResponse == 1:
+		print("You LOSE")
+		GameFinish()
+	elif cpuMove == 1 and moveResponse == 2:
+		print("You WIN")
+		GameFinish()
+	else:
+		#Added if I missed a move scenario
+		print("not in db")
+		GameFinish()
 
 def GameFinish():
-	if cpuMove == 0 and intMove == 1:
-		print("You WIN")
-	elif cpu
-
+	#Loops game
+	print("\n\n\nPress ENTER to play again")
+	playAgain = input()
+	PlayerMoves()
 
 GameFlow()
