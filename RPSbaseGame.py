@@ -41,7 +41,7 @@ def CheckForWin():
 	#Checks for a winner using if/else
 	time.sleep(.5)
 	print("\n\n\n")
-	if cpuMove == 0 and moveResponse == 0:
+	if cpuMove == moveResponse:
 		print("STALEMATE")
 		GameFinish()
 	elif cpuMove == 1 and moveResponse == 0:
@@ -55,12 +55,6 @@ def CheckForWin():
 		GameFinish()
 	elif cpuMove == 0 and moveResponse == 2:
 		print("You LOSE")
-		GameFinish()
-	elif cpuMove == 1 and moveResponse == 1:
-		print("STALEMATE")
-		GameFinish()
-	elif cpuMove == 2 and moveResponse == 2:
-		print("STALEMATE")
 		GameFinish()
 	elif cpuMove == 2 and moveResponse == 0:
 		print("You LOSE")
